@@ -63,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     60),
                                 backgroundColor: Colors.green),
                             onPressed: () {
-                              locator.get<AuthService>().registerUser(
+                              locator.get<AuthService>().signUp(
                                     name: nameController.text,
                                     email: emailController.text,
                                     password: passwordController.text,
@@ -104,7 +104,7 @@ class TextInputContainer extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Container(
+        SizedBox(
           width: MediaQuery.of(context).size.width * 0.85,
           height: 60,
           child: TextFormField(
