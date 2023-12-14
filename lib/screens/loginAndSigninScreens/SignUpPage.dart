@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:sign_ease/locator.dart';
+import 'package:sign_ease/screens/loginAndSigninScreens/loginPage.dart';
 import 'package:sign_ease/services/authsService.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -57,25 +58,34 @@ class _LoginScreenState extends State<LoginScreen> {
                             icon: const Icon(Icons.lock)),
                         const SizedBox(height: 15),
                         ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                minimumSize: Size(
-                                    MediaQuery.of(context).size.width * 0.85,
-                                    60),
-                                backgroundColor: Colors.green),
+                          style: ElevatedButton.styleFrom(
+                              minimumSize: Size(
+                                  MediaQuery.of(context).size.width * 0.85, 60),
+                              backgroundColor: Colors.green),
+                          onPressed: () {
+                            locator.get<AuthService>().signUp(
+                                  name: nameController.text,
+                                  email: emailController.text,
+                                  password: passwordController.text,
+                                );
+                          },
+                          child: const Text(
+                            "Sign In",
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        TextButton(
                             onPressed: () {
-                              locator.get<AuthService>().signUp(
-                                    name: nameController.text,
-                                    email: emailController.text,
-                                    password: passwordController.text,
-                                  );
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LoginScreen()),
+                              );
                             },
-                            child: const Text(
-                              "Sign In",
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
-                            ))
+                            child: Text("Already have you an account? Sign In"))
                       ],
                     ),
                   ),

@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:sign_ease/screens/mainPage.dart';
 
 class AuthService {
   final userCollection = FirebaseFirestore.instance.collection("users");
@@ -15,6 +17,23 @@ class AuthService {
           .createUserWithEmailAndPassword(email: email, password: password);
       if (userCredential.user != null) {
         await _registerUser(name: name, email: email, password: password);
+      }
+    } on FirebaseAuthException catch (e) {
+      Fluttertoast.showToast(msg: e.message!, toastLength: Toast.LENGTH_LONG);
+    }
+  }
+
+  Future<void> signIn(BuildContext context,
+      {required String email, required String password}) async {
+    try {
+      final UserCredential userCredential = await firebaseAuth
+          .signInWithEmailAndPassword(email: email, password: password);
+      if (userCredential.user != null) {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => MainPage(),
+          ),
+        );
       }
     } on FirebaseAuthException catch (e) {
       Fluttertoast.showToast(msg: e.message!, toastLength: Toast.LENGTH_LONG);

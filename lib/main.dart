@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sign_ease/firebase_options.dart';
 import 'package:sign_ease/locator.dart';
-import 'package:sign_ease/screens/loginAndSigninScreens/loginScreen.dart';
+import 'package:sign_ease/screens/loginAndSigninScreens/loginPage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
