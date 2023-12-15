@@ -77,6 +77,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
+                        const SizedBox(height: 15),
+                        buildSignInButton("assets/images/google.png",
+                            "Sign In With Google", () {}),
                         TextButton(
                             onPressed: () {
                               Navigator.push(
@@ -94,6 +97,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ],
           )
         ],
+      ),
+    );
+  }
+
+  Widget buildSignInButton(
+      String imagePath, String label, VoidCallback onPressed) {
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.9,
+      child: ElevatedButton.icon(
+        onPressed: onPressed,
+        icon: Image.asset(
+          imagePath,
+          width: 30.0,
+          height: 30.0,
+        ),
+        label: Text(label),
       ),
     );
   }
