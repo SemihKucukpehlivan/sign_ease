@@ -12,7 +12,20 @@
           "package_name": "com.example.sign_ease"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "375307912259-i0t7rktegvpsj7ummbthdssk2vg97uhu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sign_ease",
+            "certificate_hash": "e59793a476bdc418e5fa88440d1d985902524336"
+          }
+        },
+        {
+          "client_id": "375307912259-fvn902f1b280op727bngfmp4p1nm8cfk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyALyLtN3-WHK5_32V-YxQJHC_o9WjnreNM"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "375307912259-fvn902f1b280op727bngfmp4p1nm8cfk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

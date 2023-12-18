@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sign_ease/locator.dart';
 import 'package:sign_ease/screens/loginAndSigninScreens/SignUpPage.dart';
+import 'package:sign_ease/screens/mainPage.dart';
 import 'package:sign_ease/services/authsService.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -25,7 +26,19 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const Padding(
+                padding: EdgeInsets.only(left: 16, bottom: 0),
+                child: Text(
+                  "Hi!",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 60,
+                      fontStyle: FontStyle.italic),
+                  textAlign: TextAlign.left,
+                ),
+              ),
               Align(
                 alignment: Alignment.center,
                 child: Container(
@@ -71,9 +84,16 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         const SizedBox(height: 15),
-
-                        buildSignInButton("assets/images/google.png",
-                            "Sign In With Google", () {}),
+                        buildSignInButton(
+                            "assets/images/google.png", "Sign In With Google",
+                            () {
+                          locator.get<AuthService>().signInWithGoogle().then(
+                              (value) => Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                      builder: (context) => MainPage(),
+                                      settings:
+                                          RouteSettings(arguments: value))));
+                        }),
                         TextButton(
                             onPressed: () {
                               Navigator.push(
@@ -94,6 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+
   Widget buildSignInButton(
       String imagePath, String label, VoidCallback onPressed) {
     return Container(
