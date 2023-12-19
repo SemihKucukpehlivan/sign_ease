@@ -64,6 +64,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               backgroundColor: Colors.green),
                           onPressed: () {
                             locator.get<AuthService>().signUp(
+                              context: context,
                                   name: nameController.text,
                                   email: emailController.text,
                                   password: passwordController.text,

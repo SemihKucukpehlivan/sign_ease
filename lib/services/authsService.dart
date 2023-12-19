@@ -3,14 +3,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:sign_ease/screens/mainPage.dart';
+import 'package:sign_ease/screens/menuPage.dart';
 
 class AuthService {
   final userCollection = FirebaseFirestore.instance.collection("users");
   final firebaseAuth = FirebaseAuth.instance;
 
   Future<void> signUp(
-      {required String name,
+      {required BuildContext context,
+      required String name,
       required String email,
       required String password}) async {
     try {
@@ -18,6 +19,11 @@ class AuthService {
           .createUserWithEmailAndPassword(email: email, password: password);
       if (userCredential.user != null) {
         await _registerUser(name: name, email: email, password: password);
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => MenuPage(),
+          ),
+        );
       }
     } on FirebaseAuthException catch (e) {
       Fluttertoast.showToast(msg: e.message!, toastLength: Toast.LENGTH_LONG);
@@ -32,7 +38,7 @@ class AuthService {
       if (userCredential.user != null) {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => MainPage(),
+            builder: (context) => MenuPage(),
           ),
         );
       }
