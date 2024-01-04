@@ -40,7 +40,7 @@ class MenuPage extends StatelessWidget {
                       ),
                       IconButton(
                           onPressed: () {},
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.settings,
                             size: 35,
                           ))
@@ -172,5 +172,11 @@ class MenuPage extends StatelessWidget {
         )
       ],
     );
+  }
+
+  Future _buildNavigateToPage(BuildContext context, {required Widget page}) {
+    return Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => page,
+    ));
   }
 }
